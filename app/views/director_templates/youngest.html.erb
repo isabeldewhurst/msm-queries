@@ -1,0 +1,6 @@
+<h1>Youngest director</h1>
+
+<% youngest = Director.all.min_by{|dir| if dir.dob.nil? then 40 else ((Time.zone.now - dir.dob.to_time) / 1.year.seconds).floor end} %>
+
+
+<div>The youngest director in our dataset right now is <a href="/directors/<%= youngest.id%>"><%= youngest.name %></a>, born on <%= youngest.dob.strftime("%B %e, %Y") %>.</div>

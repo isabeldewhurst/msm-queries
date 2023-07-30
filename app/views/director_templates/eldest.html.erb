@@ -1,0 +1,6 @@
+<h1>Eldest director</h1>
+
+<% eldest = Director.all.max_by{|dir| if dir.dob.nil? then 40 else ((Time.zone.now - dir.dob.to_time) / 1.year.seconds).floor end} %>
+
+
+<div>The eldest director in our dataset right now is <a href="/directors/<%= eldest.id%>"><%= eldest.name %></a>, born on <%= eldest.dob.strftime("%B %e, %Y") %>.</div>
